@@ -19,7 +19,7 @@ class Map extends Component {
         this.state = {
             lng: 36.81667,
             lat: -1.28333,
-            zoom: 15,
+            zoom: 10,
             lineCoordinates: [],
             plotCoordinates: [],
             boundingBoxCoordinates: null,
@@ -30,12 +30,14 @@ class Map extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Draw on a Map'; 
          map = new mapboxgl.Map({
             container: document.getElementById('map'),
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [this.state.lng, this.state.lat],
             zoom: this.state.zoom
-            });        
+            });
+            document.title = 'Draw on a Map';        
     }
 
     setDrawingMode = (type) => {        
@@ -44,10 +46,10 @@ class Map extends Component {
     }
     
     clickHandler = ({ currentTarget: { id } }) => {
-        const { type } = this.state;
+        const { type } = this.state;        
         if(!type) {
             this.setDrawingMode(id);
-        } else {
+        } else if( type === id ) {            
             this[type]();
         }               
     }
@@ -64,9 +66,8 @@ class Map extends Component {
         }       
     } 
 
-    setCoordinates = (e) => {
-        // TODO: Change cursor when this handler is active
-        
+    setCoordinates = (e) => {        
+        map.getCanvas().style.cursor = 'crosshair';
         const coordinates = e.lngLat;
         this.setState(state => {            
             const plotCoordinates = state.plotCoordinates.concat([[coordinates.lng, coordinates.lat]]);
@@ -115,9 +116,10 @@ class Map extends Component {
                                         }
                     }
                 );
-            });            
+            }); 
+             map.off('click', this.setCoordinates);          
          }             
-         map.off('click', this.setCoordinates); 
+          
      }
 
      BoundingBox = () => {
@@ -180,32 +182,32 @@ class Map extends Component {
                 type: null,
             }
         });
+        map.off('click', this.setCoordinates);
     }
 
      infoText = {
-         Circle: 'Click on a point to set the center, then click on another point to set the radius. Click on the Circle Tool button again to complete.',
-         BoundingBox: 'Click two points to set the corner edges of the bounding box and then click the Polygon tool again to close the shape.',
-         Polygon: 'Click to set polygon points and then click the Polygon Tool again to close the shape.',
+         Circle: 'Click on a point on the map to set the center, then click on another point to set the radius. Click on the Circle Tool button again to complete. Requires only two Points. Use the Clear button to reset the tools.',
+         BoundingBox: 'Click on two points on the map to set the corner edges of the bounding box and then click the Polygon tool again to close the shape. Requires only two Points. Use the Clear button to reset the tools.',
+         Polygon: 'Click on the map to set polygon points and then click the Polygon Tool again to close the shape. Use the Clear button to reset the tools.',
          null: 'Click on a tool to set the drawing mode.'
      }
 
    render() {
-       const { type, boundingBoxCoordinates, circleCoordinates, polygonCoordinates } = this.state;
+       const { type, boundingBoxCoordinates, circleCoordinates, polygonCoordinates, dr } = this.state;
         return (
             <div className='wrapper'>
                 <div className='header'></div>
                 <div className='main'>
                     <div className='grid'>                
                     <div className='map-style' id='map' />
-
                     <div className="tools">
                     <h4 className="tools-heading">Tools:</h4>
                         <div className='drawing-controls'>                            
-                            <button onClick={this.clickHandler} id="Circle"><span><img src={circleIcon} alt="circle-icon"/></span></button>
+                            <button className={type === 'Circle' ? 'active' : ''} onClick={this.clickHandler} id="Circle"><span><img src={circleIcon} alt="circle-icon"/></span></button>
                         
-                            <button onClick={this.clickHandler} id="Polygon"><span><img src={polyIcon} alt="polygon-icon"/></span></button>
+                            <button className={type === 'Polygon' ? 'active' : ''} onClick={this.clickHandler} id="Polygon"><span><img src={polyIcon} alt="polygon-icon"/></span></button>
                             
-                            <button onClick={this.clickHandler} id="BoundingBox"><span><img src={boxIcon} alt="boxIcon"/></span></button>
+                            <button className={type === 'BoundingBox' ? 'active' : ''} onClick={this.clickHandler} id="BoundingBox"><span><img src={boxIcon} alt="boxIcon"/></span></button>
                             
                             <button onClick={this.clear} id="clear"><span><img src={trashIcon} alt="clear-icon"/></span></button>
                         </div>

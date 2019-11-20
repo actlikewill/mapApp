@@ -6,7 +6,7 @@
 .grid {  
   margin: 10px auto;
   display:inline-grid;
-  grid-template-columns: 1200px 14em;
+  grid-template-columns: 1000px 14em;
   grid-template-rows: 6em;  
   grid-template-areas: 
                         'map tools'
@@ -17,14 +17,18 @@
 
 .header {  
   width: 100%;
-  height: 60px;
+  height: 40px;
   background-color: #282828
 }
 
 .map-style { 
   grid-area: map;
-  width: 1200px;
-  height: 900px;  
+  width: 1000px;
+  height: 600px;     
+}
+
+canvas:hover {
+  cursor: crosshair; 
 }
 
 .tools {
@@ -133,12 +137,15 @@
 
 .info {
   grid-area: info;
-  background-color: #282828;    
+  background-color: #282828;
+  height: 494px;
+  overflow: auto;   
 }
 
 .info-text {
   min-height: 2em;
   margin:  1em;
+  font-size: .8em;
   color: white;
   overflow-wrap: break-word;
   line-height: 1.5;
@@ -151,3 +158,7 @@
   
 }
 
+.active {
+  background-color: #00af6c !important;
+  
+}
