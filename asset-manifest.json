@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/mapApp/static/css/main.49e9d838.chunk.css",
+    "main.js": "/mapApp/static/js/main.a574130d.chunk.js",
+    "main.js.map": "/mapApp/static/js/main.a574130d.chunk.js.map",
+    "runtime-main.js": "/mapApp/static/js/runtime-main.25be7640.js",
+    "runtime-main.js.map": "/mapApp/static/js/runtime-main.25be7640.js.map",
+    "static/css/2.75edc52f.chunk.css": "/mapApp/static/css/2.75edc52f.chunk.css",
+    "static/js/2.1ec29dc5.chunk.js": "/mapApp/static/js/2.1ec29dc5.chunk.js",
+    "static/js/2.1ec29dc5.chunk.js.map": "/mapApp/static/js/2.1ec29dc5.chunk.js.map",
+    "index.html": "/mapApp/index.html",
+    "precache-manifest.8dd5393fa7b99f6a4ddf884511bdfb05.js": "/mapApp/precache-manifest.8dd5393fa7b99f6a4ddf884511bdfb05.js",
+    "service-worker.js": "/mapApp/service-worker.js",
+    "static/css/2.75edc52f.chunk.css.map": "/mapApp/static/css/2.75edc52f.chunk.css.map",
+    "static/css/main.49e9d838.chunk.css.map": "/mapApp/static/css/main.49e9d838.chunk.css.map",
+    "static/media/box.svg": "/mapApp/static/media/box.638e008a.svg",
+    "static/media/circle.svg": "/mapApp/static/media/circle.1e2d0595.svg",
+    "static/media/garbage.svg": "/mapApp/static/media/garbage.24ad147d.svg",
+    "static/media/polygon.svg": "/mapApp/static/media/polygon.df01d317.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.25be7640.js",
+    "static/css/2.75edc52f.chunk.css",
+    "static/js/2.1ec29dc5.chunk.js",
+    "static/css/main.49e9d838.chunk.css",
+    "static/js/main.a574130d.chunk.js"
+  ]
+}
